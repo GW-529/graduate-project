@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>毕业设计管理系统</title>
@@ -15,7 +16,8 @@
     {% include 'public/script.html' %}
 
     {% include 'public/style.html' %}
-
+    
+    <!-- 定义页面特定元素的样式-->
     <style>
         .teacher-tab .widget,
         .teacher-tab .widget-statistic-header,
@@ -55,7 +57,7 @@
                             </div>
                             <div class="widget-statistic-body">
                                 <div class="widget-statistic-value">
-                                    {{show_data.show_count1}}
+                                    {{show_data.show_count2}}
                                 </div>
                                 <div class="widget-statistic-description">
                                     本季度比去年新增 <strong>{{show_data.show_add1}}</strong> 人
@@ -71,7 +73,7 @@
                             </div>
                             <div class="widget-statistic-body">
                                 <div class="widget-statistic-value">
-                                    {{show_data.show_count2}}
+                                    {{show_data.show_count1}}
                                 </div>
                                 <div class="widget-statistic-description">
                                     本季度比去年新增 <strong>{{show_data.show_add2}}</strong> 人
@@ -106,8 +108,9 @@
                             </div>
                             <div class="achievement-subheading">
                                 当前管理员ID：{{request.session.userinfo.number}}
+                                
                             </div>
-                            <img class="achievement-image" src="/static/lib/admin-assets/img/user01.png" alt="">
+                            <img class="achievement-image" src="../../static/lib/admin-assets/img/user01.png" alt="">
                         </div>
                     </div>
 
@@ -133,7 +136,7 @@
                                                 <td>{{item.type}}</td>
                                                 <td>{{item.name}}</td>
                                                 <td>{{item.number}}</td>
-                                                <td>{{item.register_time | date:'Y-m-d'}}</td>
+                                                <td>{{item.register_time | date:"Y-m-d"}}</td>
                                             </tr>
                                             {% endfor %}
 
@@ -149,10 +152,10 @@
                 </div>
     </div>
 
-    <script src="/static/lib/admin-assets/js/amazeui.min.js"></script>
-    <script src="/static/lib/admin-assets/js/amazeui.datatables.min.js"></script>
-    <script src="/static/lib/admin-assets/js/dataTables.responsive.min.js"></script>
-    <script src="/static/lib/admin-assets/js/app.js"></script>
+    <script src="../../static/lib/admin-assets/js/amazeui.min.js"></script>
+    <script src="../../static/lib/admin-assets/js/amazeui.datatables.min.js"></script>
+    <script src="../../static/lib/admin-assets/js/dataTables.responsive.min.js"></script>
+    <script src="../../static/lib/admin-assets/js/app.js"></script>
 
 </body>
 

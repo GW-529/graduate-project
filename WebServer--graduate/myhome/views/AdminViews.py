@@ -17,10 +17,10 @@ def index(request):
 
     # （1.学生信息
     # 获取了最新的学生信息，并将每个学生的学号、姓名、注册时间等信息添加到 data_list 列表中，同时标记这些条目的类型为学生。
-    data_list1 = Student.objects.filter ().order_by ('register_time')[:data_len]
+    data_list1 = Student.objects.filter().order_by('register_time')[:data_len]
     for item in data_list1:
         data_list.append({
-            'number':item.number,
+            'number': item.number,
             'name':item.name,
             'register_time':item.register_time,
             'type':'学生',
@@ -30,7 +30,8 @@ def index(request):
     # 如果 学生 数量不足 5 条，就从教师信息中获取足够数量的条目来填充，然后将其添加到 data_list 中。
     if len(data_list) < data_len:
         last_len = data_len - len(data_list)
-        data_list2 = Teacher.objects.filter ().order_by ('register_time')[:last_len]
+        data_list2 = Teacher.objects.filter().order_by('register_time')[:last_len]
+        print(f'-----------------------------',data_list2)
         for item in data_list2:
             data_list.append({
                 'number':item.number,
@@ -38,16 +39,16 @@ def index(request):
                 'register_time':item.register_time,
                 'type':'教师',
             })
-
+    data_list_tea = Teacher.objects.filter().order_by('register_time')[:5]
     # 2.获取展示栏信息
     # 计算了过去 90 天内的学生和教师的注册数量，以及学生毕业文章的数量。
     last_time = datetime.datetime.now() - datetime.timedelta(days=90)
-    data1_1 = Student.objects.all ().count ()
-    data1_2 = len(Student.objects.filter (register_time__gte=last_time).values())
-    data2_1 = Teacher.objects.all ().count ()
-    data2_2 = len(Teacher.objects.filter (register_time__gte=last_time).values())
-    data3_1 = StudentGraduateArticle.objects.all ().count ()
-    data3_2 = math.ceil(StudentGraduateArticle.objects.all ().count ()  / 2)
+    data1_1 = Student.objects.all().count()
+    data1_2 = len(Student.objects.filter(register_time__gte=last_time).values())
+    data2_1 = Teacher.objects.all().count()
+    data2_2 = len(Teacher.objects.filter(register_time__gte=last_time).values())
+    data3_1 = StudentGraduateArticle.objects.all().count()
+    data3_2 = math.ceil(StudentGraduateArticle.objects.all().count() / 2)
 
     # 将获取的展示栏信息存储在一个字典 show_data 中，准备传递给模板。
     show_data = {
@@ -59,7 +60,7 @@ def index(request):
         'show_add3':data3_2,
     }
     # 将获取的数据和展示栏信息传递给名为 admin/index.html 的模板，并进行渲染。
-    return render(request,'admin/index.html',{'data_list':data_list,'show_data':show_data})
+    return render(request,'admin/index.html',{'data_list':data_list,'show_data':show_data,'data_list_tea':data_list_tea})
 
 
 # 教师管理
