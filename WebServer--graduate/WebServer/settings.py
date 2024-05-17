@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'WebServer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django-graduate',
+        'NAME': 'graduate_project',
         'USER': 'root',
         'PASSWORD': '123456',
         'HOST': 'localhost',
