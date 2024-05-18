@@ -51,11 +51,7 @@
             let keywords_value = $('input[name^=keywords_value]').val()
             // 检测value是否为空
             keywords_value = keywords_value ? keywords_value.replace(" ") : null
-            if(!keywords_value){
-                layer.msg("关键词不能为空！");
-                
-                return;
-            }
+            
             // 然后再发送请求
             $.ajax({
                 url:'{% url 'admin_doSearchTeacher' %}',

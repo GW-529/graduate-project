@@ -81,16 +81,20 @@ def doDeleteTeacher(request):
 def doSearchTeacher(request):
     # 将前端传来的 POST 请求中的数据转换为一个字典，并将其存储在变量 data 中。
     data = request.POST.dict()
+
     # 从 data 字典中提取出 keywords_name 和 keywords_value，分别表示要搜索的字段名和搜索的值。
     keywords_name = data['keywords_name']
     keywords_value = data['keywords_value']
+    if keywords_value:
+        # 创建一个名为 searchdata 的字典。__icontains，表示要在指定字段名上进行模糊查询
+        searchdata = {f'{keywords_name}__icontains': keywords_value}
+        # 用 Django ORM 的 filter 方法，根据 searchdata 中的条件筛选 Teacher 表中的数据，并将结果存储在 data_list 中。
+        # **searchdata 是将字典解包成关键字参数。
+        data_list = Teacher.objects.filter(**searchdata)
+        # 返回一个 JSON 响应
+    else:
+        data_list = Teacher.objects.all()
 
-    # 创建一个名为 searchdata 的字典。__icontains，表示要在指定字段名上进行模糊查询
-    searchdata = {f'{keywords_name}__icontains': keywords_value}
-    # 用 Django ORM 的 filter 方法，根据 searchdata 中的条件筛选 Teacher 表中的数据，并将结果存储在 data_list 中。
-    # **searchdata 是将字典解包成关键字参数。
-    data_list = Teacher.objects.filter(**searchdata)
-    # 返回一个 JSON 响应
     return JsonResponse({'msg':"查询成功",'data':serializers.serialize("json",data_list),'code':200})
 
 
