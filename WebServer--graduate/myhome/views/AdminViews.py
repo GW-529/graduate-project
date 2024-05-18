@@ -31,7 +31,6 @@ def index(request):
     if len(data_list) < data_len:
         last_len = data_len - len(data_list)
         data_list2 = Teacher.objects.filter().order_by('register_time')[:last_len]
-        print(f'-----------------------------',data_list2)
         for item in data_list2:
             data_list.append({
                 'number':item.number,
@@ -39,7 +38,6 @@ def index(request):
                 'register_time':item.register_time,
                 'type':'教师',
             })
-    data_list_tea = Teacher.objects.filter().order_by('register_time')[:5]
     # 2.获取展示栏信息
     # 计算了过去 90 天内的学生和教师的注册数量，以及学生毕业文章的数量。
     last_time = datetime.datetime.now() - datetime.timedelta(days=90)
@@ -60,7 +58,7 @@ def index(request):
         'show_add3':data3_2,
     }
     # 将获取的数据和展示栏信息传递给名为 admin/index.html 的模板，并进行渲染。
-    return render(request,'admin/index.html',{'data_list':data_list,'show_data':show_data,'data_list_tea':data_list_tea})
+    return render(request,'admin/index.html',{'data_list':data_list,'show_data':show_data})
 
 
 # 教师管理
@@ -86,6 +84,7 @@ def doSearchTeacher(request):
     # 从 data 字典中提取出 keywords_name 和 keywords_value，分别表示要搜索的字段名和搜索的值。
     keywords_name = data['keywords_name']
     keywords_value = data['keywords_value']
+
     # 创建一个名为 searchdata 的字典。__icontains，表示要在指定字段名上进行模糊查询
     searchdata = {f'{keywords_name}__icontains': keywords_value}
     # 用 Django ORM 的 filter 方法，根据 searchdata 中的条件筛选 Teacher 表中的数据，并将结果存储在 data_list 中。

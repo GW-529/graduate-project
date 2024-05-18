@@ -53,6 +53,7 @@
             keywords_value = keywords_value ? keywords_value.replace(" ") : null
             if(!keywords_value){
                 layer.msg("关键词不能为空！");
+                
                 return;
             }
             // 然后再发送请求
@@ -87,8 +88,9 @@
                                     </tr>
                               `
                           })
-                    }
                           trList[0].innerHTML = liNode
+                    }
+                          
                 }
             })
         }
@@ -112,7 +114,7 @@
                                     <div class="am-form-group tpl-table-list-select">
                                         <select name="keywords_name" data-am-selected="{btnSize: 'sm'}">
                                           <option value="name" selected>姓名</option>
-                                          <option value="number">ID号</option>
+                                          <option value="number">账号</option>
                                         </select>
                                     </div>
                                 </div>
@@ -130,8 +132,8 @@
                                     <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                         <thead>
                                             <tr>
-                                                <th>ID号</th>
-                                                <th>作者</th>
+                                                <th>账号</th>
+                                                <th>姓名</th>
                                                 <th>注册时间</th>
                                                 <th>操作</th>
                                             </tr>
