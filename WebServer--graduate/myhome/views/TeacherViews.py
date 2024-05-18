@@ -35,7 +35,8 @@ def index(request):
     data2_1 = Teacher.objects.all ().count ()
     data2_2 = len(Teacher.objects.filter (register_time__gte=last_time).values())
     data3_1 = StudentGraduateArticle.objects.all ().count ()
-    data3_2 = math.ceil(StudentGraduateArticle.objects.all ().count ()  / 2)
+    # data3_2 = math.ceil(StudentGraduateArticle.objects.all ().count ()  / 2)
+    data3_2 = len(StudentGraduateArticle.objects.filter().values())
     show_data = {
         'show_count1':data1_1,
         'show_add1':data1_2,
