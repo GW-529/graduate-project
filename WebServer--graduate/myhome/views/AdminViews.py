@@ -114,8 +114,11 @@ def doSearchStudent(request):
     data = request.POST.dict()
     keywords_name = data['keywords_name']
     keywords_value = data['keywords_value']
-    searchdata = {f'{keywords_name}__icontains': keywords_value}
-    data_list = Student.objects.filter(**searchdata)
+    if keywords_value:
+        searchdata = {f'{keywords_name}__icontains': keywords_value}
+        data_list = Student.objects.filter(**searchdata)
+    else:
+        data_list = Student.objects.all()
     return JsonResponse({'msg':"查询成功",'data':serializers.serialize("json",data_list),'code':200})
 
 
@@ -135,6 +138,9 @@ def doSearchTitle(request):
     data = request.POST.dict()
     keywords_name = data['keywords_name']
     keywords_value = data['keywords_value']
-    searchdata = {f'{keywords_name}__icontains': keywords_value}
-    data_list = StudentGraduateArticle.objects.filter(**searchdata)
+    if keywords_value:
+        searchdata = {f'{keywords_name}__icontains': keywords_value}
+        data_list = StudentGraduateArticle.objects.filter(**searchdata)
+    else:
+        data_list = StudentGraduateArticle.objects.all()
     return JsonResponse({'msg':"查询成功",'data':serializers.serialize("json",data_list),'code':200})

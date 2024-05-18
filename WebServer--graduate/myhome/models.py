@@ -161,7 +161,20 @@ class StudentGraduateAnswer(models.Model):
         managed = True
         db_table = 'student_graduate_answer'
 
-
+'''
+name: 文章名称，类型为 CharField，最大长度为 255，可以为空。
+brief: 文章简介，类型为 CharField，最大长度为 255，可以为空。
+student_id: 学生的 ID，类型为 IntegerField，可以为空。
+student_name: 学生的姓名，类型为 CharField，最大长度为 255，可以为空。
+teacher_id: 教师的 ID，类型为 IntegerField，可以为空。
+teacher_name: 教师的姓名，类型为 CharField，最大长度为 255，可以为空。
+guide_score: 导师评分，类型为 CharField，最大长度为 255，可以为空。
+guide_remark: 导师评语，类型为 CharField，最大长度为 255，可以为空。
+view_score: 审阅评分，类型为 CharField，最大长度为 255，可以为空。
+view_remark: 审阅评语，类型为 CharField，最大长度为 255，可以为空。
+article_docx: 文章文档路径，类型为 CharField，最大长度为 255，可以为空。
+total_docx: 总评文档路径，类型为 CharField，最大长度为 255，可以为空。
+'''
 class StudentGraduateArticle(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     brief = models.CharField(max_length=255, blank=True, null=True)
