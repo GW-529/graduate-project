@@ -306,7 +306,8 @@ def title_msg(request):
             graduate_data.append(t_item[0])
             # 继续获取开题信息
             tt_item = StudentTitleMsg.objects.filter(teacher_id=id,student_id=item.id).values()
-            score_data.append(tt_item[0])
+            if tt_item:
+                score_data.append(tt_item[0])
     return render(request,'teacher/title_msg.html',{'data':data,'graduate_data':enumerate(graduate_data),'score_data':enumerate(score_data)})
 def doFirstScore(request):
     id = request.session["userinfo"].get("id",None)
@@ -346,8 +347,10 @@ def middle_check(request):
             graduate_data.append(t_item[0])
             # 继续获取开题信息
             tt_item = StudentMiddleCheck.objects.filter(teacher_id=id,student_id=item.id).values()
-            score_data.append(tt_item[0])
+            if tt_item:
+                score_data.append(tt_item[0])
     return render(request,'teacher/middle_check.html',{'data':data,'graduate_data':enumerate(graduate_data),'score_data':enumerate(score_data)})
+
 def doSecondScore(request):
     id = request.session["userinfo"].get("id",None)
     name = request.session["userinfo"].get("name",None)
@@ -386,7 +389,8 @@ def graduate_answer(request):
             graduate_data.append(t_item[0])
             # 继续获取开题信息
             tt_item = StudentGraduateAnswer.objects.filter(teacher_id=id,student_id=item.id).values()
-            score_data.append(tt_item[0])
+            if tt_item:
+                score_data.append(tt_item[0])
     return render(request,'teacher/graduate_answer.html',{'data':data,'graduate_data':enumerate(graduate_data),'score_data':enumerate(score_data)})
 def doThirdScore(request):
     id = request.session["userinfo"].get("id",None)
