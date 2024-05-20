@@ -326,7 +326,7 @@ def doFirstScore(request):
     new_data = {
         'first_score':data['score'],
     }
-    StudentTitleMsg.objects.filter (teacher_id=id,teacher_name=name,student_id=data['id']).update (**new_data)
+    StudentTitleMsg.objects.filter (student_id=data['id']).update (**new_data)
     return JsonResponse({'msg':"提交成功",'code':200})
 def doFirstRemark(request):
     id = request.session["userinfo"].get("id",None)
@@ -337,7 +337,7 @@ def doFirstRemark(request):
     new_data = {
         'first_remark':data['remark']
     }
-    StudentTitleMsg.objects.filter (teacher_id=id,teacher_name=name,student_id=data['id']).update (**new_data)
+    StudentTitleMsg.objects.filter (student_id=data['id']).update (**new_data)
     return JsonResponse({'msg':"提交成功",'code':200})
 # (2.中期检查
 def middle_check(request):
@@ -368,7 +368,7 @@ def doSecondScore(request):
     new_data = {
         'second_score':data['score'],
     }
-    StudentMiddleCheck.objects.filter (teacher_id=id,teacher_name=name,student_id=data['id']).update (**new_data)
+    StudentMiddleCheck.objects.filter (student_id=data['id']).update (**new_data)
     return JsonResponse({'msg':"提交成功",'code':200})
 def doSecondRemark(request):
     id = request.session["userinfo"].get("id",None)
@@ -379,7 +379,7 @@ def doSecondRemark(request):
     new_data = {
         'second_remark':data['remark']
     }
-    StudentMiddleCheck.objects.filter (teacher_id=id,teacher_name=name,student_id=data['id']).update (**new_data)
+    StudentMiddleCheck.objects.filter (student_id=data['id']).update (**new_data)
     return JsonResponse({'msg':"提交成功",'code':200})
 # (3.毕业答辩
 def graduate_answer(request):
@@ -410,7 +410,7 @@ def doThirdScore(request):
         'third_score':data['score'],
         'graduate_rank':data['rank'],
     }
-    StudentGraduateAnswer.objects.filter (teacher_id=id,teacher_name=name,student_id=data['id']).update (**new_data)
+    StudentGraduateAnswer.objects.filter (student_id=data['id']).update (**new_data)
     return JsonResponse({'msg':"提交成功",'code':200})
 def doThirdRemark(request):
     id = request.session["userinfo"].get("id",None)
@@ -421,7 +421,7 @@ def doThirdRemark(request):
     new_data = {
         'third_remark':data['remark']
     }
-    StudentGraduateAnswer.objects.filter (teacher_id=id,teacher_name=name,student_id=data['id']).update (**new_data)
+    StudentGraduateAnswer.objects.filter (student_id=data['id']).update (**new_data)
     return JsonResponse({'msg':"提交成功",'code':200})
 # (4.毕业论文
 def graduate_article(request):
@@ -450,7 +450,7 @@ def doViewScore(request):
     new_data = {
         'view_score':data['score'],
     }
-    StudentGraduateArticle.objects.filter (teacher_id=id,teacher_name=name,student_id=data['id']).update (**new_data)
+    StudentGraduateArticle.objects.filter (student_id=data['id']).update (**new_data)
     return JsonResponse({'msg':"提交成功",'code':200})
 def doViewRemark(request):
     id = request.session["userinfo"].get("id",None)
@@ -461,5 +461,5 @@ def doViewRemark(request):
     new_data = {
         'view_remark':data['remark']
     }
-    StudentGraduateArticle.objects.filter (teacher_id=id,teacher_name=name,student_id=data['id']).update (**new_data)
+    StudentGraduateArticle.objects.filter (student_id=data['id']).update (**new_data)
     return JsonResponse({'msg':"提交成功",'code':200})
