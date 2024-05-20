@@ -304,7 +304,7 @@
                                     <thead>
                                         <tr>
                                             <th>序号</th>
-                                            <th>ID</th>
+                                            <th>学生ID</th>
                                             <th>姓名</th>
                                             <th>操作</th>
                                         </tr>
@@ -313,7 +313,7 @@
                                         {% for i,item in data_list %}
                                             <tr class="gradeX">
                                                 <td>{{i|add:1}}</td>
-                                                <td>{{item.number}}</td>
+                                                <td>{{item.id}}</td>
                                                 <td>{{item.name}}</td>
                                                 <td>
                                                     <div class="tpl-table-black-operation">

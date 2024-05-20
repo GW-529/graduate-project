@@ -65,8 +65,16 @@ def design_title(request):
         StudentGraduateArticle(teacher_id=id,teacher_name=name).save()
         StudentGraduateAnswer(teacher_id=id,teacher_name=name).save()
         StudentMiddleCheck(teacher_id=id,teacher_name=name).save()
+    data_list_select = StudentSelectTitle.objects.all()
     data_list = Student.objects.all()
-    return render(request,'teacher/design_title.html',{'data':data,'data_list': enumerate(data_list)})
+    student_id, new_data_list = [], []
+    for item in data_list_select:
+        if item.student_name:
+            student_id.append(item.student_id)
+    for student in data_list:
+        if student.id not in student_id:
+            new_data_list.append(student)
+    return render(request,'teacher/design_title.html',{'data':data,'data_list': enumerate(new_data_list),"data_list_select":data_list_select})
 @csrf_exempt # 允许跨站上传
 def doUploadTask(request):
     id = request.session["userinfo"].get("id",None)

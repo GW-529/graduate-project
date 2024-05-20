@@ -204,7 +204,17 @@ class StudentGroup(models.Model):
         managed = True
         db_table = 'student_group'
 
-
+'''
+name: 标题名称，最大长度为 255 个字符，可以为空。
+brief: 简介，最大长度为 255 个字符，可以为空。
+student_id: 学生ID，整数类型，可以为空。
+student_name: 学生姓名，最大长度为 255 个字符，可以为空。
+teacher_id: 教师ID，整数类型，可以为空。
+teacher_name: 教师姓名，最大长度为 255 个字符，可以为空。
+second_score: 第二次评分，最大长度为 255 个字符，可以为空。
+second_remark: 第二次评语，最大长度为 255 个字符，可以为空。
+这些字段描述了学生中期检查的各个方面，包括学生和教师的身份信息、选题名称、简介以及第二次评分和评语。
+'''
 class StudentMiddleCheck(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     brief = models.CharField(max_length=255, blank=True, null=True)
@@ -219,7 +229,17 @@ class StudentMiddleCheck(models.Model):
         managed = True
         db_table = 'student_middle_check'
 
-
+'''
+name: 标题名称，最大长度为 255 个字符，可以为空。
+brief: 简介，最大长度为 255 个字符，可以为空。
+student_id: 学生ID，整数类型，可以为空。
+student_name: 学生姓名，最大长度为 255 个字符，可以为空。
+teacher_id: 教师ID，整数类型，可以为空。
+teacher_name: 教师姓名，最大长度为 255 个字符，可以为空。
+task_docx: 任务文档，最大长度为 255 个字符，可以为空。
+guide_docx: 指导文档，最大长度为 255 个字符，可以为空。
+这些字段描述了学生选题信息的各个方面，包括学生和教师的身份信息、选题名称、简介以及相关文档的路径。
+'''
 class StudentSelectTitle(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     brief = models.CharField(max_length=255, blank=True, null=True)
@@ -234,7 +254,22 @@ class StudentSelectTitle(models.Model):
         managed = True
         db_table = 'student_select_title'
 
-
+'''
+name: 标题名称，最大长度为 255 个字符，可以为空。
+brief: 简介，最大长度为 255 个字符，可以为空。
+student_id: 学生ID，整数类型，可以为空。
+student_name: 学生姓名，最大长度为 255 个字符，可以为空。
+teacher_id: 教师ID，整数类型，可以为空。
+teacher_name: 教师姓名，最大长度为 255 个字符，可以为空。
+first_score: 第一次评分，最大长度为 255 个字符，可以为空。
+first_remark: 第一次评语，最大长度为 255 个字符，可以为空。
+english_score: 英语评分，最大长度为 255 个字符，可以为空。
+english_remark: 英语评语，最大长度为 255 个字符，可以为空。
+title_docx: 标题文档，最大长度为 255 个字符，可以为空。
+english_docx: 英语文档，最大长度为 255 个字符，可以为空。
+apply_docx: 申请文档，最大长度为 255 个字符，可以为空。
+这些字段描述了学生选题信息的各个方面，包括学生和教师的身份信息、评分、评语以及相关文档的路径。
+'''
 class StudentTitleMsg(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     brief = models.CharField(max_length=255, blank=True, null=True)
@@ -267,7 +302,13 @@ class Teacher(models.Model):
         managed = True
         db_table = 'teacher'
 
-
+'''
+name: CharField 类型，用于存储组名，是必填字段。
+teacher: ForeignKey 类型，关联到 Teacher 模型，使用级联删除。
+count: IntegerField 类型，用于存储组成员数，默认为 0，可以为空。
+teacher_type: CharField 类型，用于存储教师类型，可以为空。
+Meta 类: 设置表名为 teacher_group，并在 name 字段上添加索引以提高查询性能。
+'''
 class TeacherGroup(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     teacher_id = models.CharField(max_length=11, blank=True, null=True)
