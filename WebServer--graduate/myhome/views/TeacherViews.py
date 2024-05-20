@@ -309,11 +309,11 @@ def title_msg(request):
     graduate_data= []
     score_data= []
     for item in group_student_arr:
-        t_item = StudentGraduateArticle.objects.filter(teacher_id=id,student_id=item.id).values()
+        t_item = StudentGraduateArticle.objects.filter(student_id=item.id).values()
         if t_item:
             graduate_data.append(t_item[0])
             # 继续获取开题信息
-            tt_item = StudentTitleMsg.objects.filter(teacher_id=id,student_id=item.id).values()
+            tt_item = StudentTitleMsg.objects.filter(student_id=item.id).values()
             if tt_item:
                 score_data.append(tt_item[0])
     return render(request,'teacher/title_msg.html',{'data':data,'graduate_data':enumerate(graduate_data),'score_data':enumerate(score_data)})
