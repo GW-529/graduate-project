@@ -350,11 +350,11 @@ def middle_check(request):
     graduate_data= []
     score_data= []
     for item in group_student_arr:
-        t_item = StudentGraduateArticle.objects.filter(teacher_id=id,student_id=item.id).values()
+        t_item = StudentGraduateArticle.objects.filter(student_id=item.id).values()
         if t_item:
             graduate_data.append(t_item[0])
             # 继续获取开题信息
-            tt_item = StudentMiddleCheck.objects.filter(teacher_id=id,student_id=item.id).values()
+            tt_item = StudentMiddleCheck.objects.filter(student_id=item.id).values()
             if tt_item:
                 score_data.append(tt_item[0])
     return render(request,'teacher/middle_check.html',{'data':data,'graduate_data':enumerate(graduate_data),'score_data':enumerate(score_data)})
@@ -392,11 +392,11 @@ def graduate_answer(request):
     graduate_data= []
     score_data= []
     for item in group_student_arr:
-        t_item = StudentGraduateArticle.objects.filter(teacher_id=id,student_id=item.id).values()
+        t_item = StudentGraduateArticle.objects.filter(student_id=item.id).values()
         if t_item:
             graduate_data.append(t_item[0])
             # 继续获取开题信息
-            tt_item = StudentGraduateAnswer.objects.filter(teacher_id=id,student_id=item.id).values()
+            tt_item = StudentGraduateAnswer.objects.filter(student_id=item.id).values()
             if tt_item:
                 score_data.append(tt_item[0])
     return render(request,'teacher/graduate_answer.html',{'data':data,'graduate_data':enumerate(graduate_data),'score_data':enumerate(score_data)})
@@ -434,11 +434,11 @@ def graduate_article(request):
     graduate_data= []
     score_data= []
     for item in group_student_arr:
-        t_item = StudentGraduateArticle.objects.filter(teacher_id=id,student_id=item.id).values()
+        t_item = StudentGraduateArticle.objects.filter(student_id=item.id).values()
         if t_item:
             graduate_data.append(t_item[0])
             # 继续获取开题信息
-            tt_item = StudentGraduateArticle.objects.filter(teacher_id=id,student_id=item.id).values()
+            tt_item = StudentGraduateArticle.objects.filter(student_id=item.id).values()
             score_data.append(tt_item[0])
     return render(request,'teacher/graduate_article.html',{'data':data,'graduate_data':enumerate(graduate_data),'score_data':enumerate(score_data)})
 def doViewScore(request):
