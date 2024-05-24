@@ -72,10 +72,12 @@ def teacher_list(request):
 def doDeleteTeacher(request):
     # 获取POST请求的数据
     data = request.POST.dict()
-    print(data)
     # 从 Teacher 表中筛选出 id 等于 data['id'] 的记录，并将其删除
-    Teacher.objects.filter(id = data['id']).delete()
-    return JsonResponse({'msg':"删除成功",'code':200})
+    if StudentSelectTitle.objects.filter(teacher_id=data['id']).exists():
+        return JsonResponse({'msg': "无法删除,已有指导学生", 'code': 201})
+    else:
+        Teacher.objects.filter(id = data['id']).delete()
+        return JsonResponse({'msg':"删除成功",'code':200})
 
 
 def doSearchTeacher(request):

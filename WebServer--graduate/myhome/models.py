@@ -319,3 +319,11 @@ class TeacherGroup(models.Model):
     class Meta:
         managed = True
         db_table = 'teacher_group'
+
+class teachertitle(models.Model):
+    title = models.CharField(max_length=255, blank=True, null=True)
+    teacher_id = models.IntegerField(max_length=11,blank=True, null=True)
+    teacher_name = models.CharField(max_length=255, blank=True, null=True)
+    class Meta:
+        managed = True
+        db_table = 'teacher_title'
