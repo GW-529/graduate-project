@@ -108,8 +108,11 @@ def student_list(request):
 
 def doDeleteStudent(request):
     data = request.POST.dict()
-    Student.objects.filter(id = data['id']).delete()
-    return JsonResponse({'msg':"删除成功",'code':200})
+    if StudentSelectTitle.objects.filter(student_id=data['id']).exists():
+        return JsonResponse({'msg': "无法删除,已有指导老师'", 'code': 201})
+    else:
+        Student.objects.filter(id = data['id']).delete()
+        return JsonResponse({'msg':"删除成功",'code':200})
 
 
 def doSearchStudent(request):

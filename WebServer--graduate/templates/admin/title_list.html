@@ -129,7 +129,7 @@
                                                 <th>序号</th>
                                                 <th>毕业学生</th>
                                                 <th>指导教师</th>
-                                                <th>操作</th>
+                                                <!--<th>操作</th>-->
                                             </tr>
                                         </thead>
                                         <tbody id="table-list">
@@ -138,6 +138,7 @@
                                                     <td>{{key | add:1}}</td>
                                                     <td>{{item.student_name}}</td>
                                                     <td>{{item.teacher_name}}</td>
+                                                    <!--
                                                     <td>
                                                         <div class="tpl-table-black-operation">
                                                             <a href="javascript:;" class="tpl-table-black-operation-del" onclick="onDeleteData('{{item.id}}')">
@@ -145,6 +146,7 @@
                                                             </a>
                                                         </div>
                                                     </td>
+                                                -->
                                                 </tr>
                                             {% endfor %}
                                             <!-- more data -->
