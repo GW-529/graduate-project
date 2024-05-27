@@ -48,6 +48,7 @@ def index(request):
     return render(request,'teacher/index.html',{'data_list':data_list,'show_data':show_data})
 # 选择信息
 # (1.设计开题
+# 原功能：获取当前教师的id和name，检查当前教师是否有开题记录，有就保存到data中传到前端，没有就到各个表里面创建一条只有教师id和name，其他为空的记录。如果有学生已经有指导老师，则该学生不会显示在该老师页面。
 def design_title(request):
     id = request.session["userinfo"].get("id",None)
     name = request.session["userinfo"].get("name",None)
@@ -75,6 +76,7 @@ def design_title(request):
         if student.id not in student_id:
             new_data_list.append(student)
     return render(request,'teacher/design_title.html',{'data':data,'data_list': enumerate(new_data_list),"data_list_select":data_list_select})
+# 上传任务书
 @csrf_exempt # 允许跨站上传
 def doUploadTask(request):
     id = request.session["userinfo"].get("id",None)
@@ -84,6 +86,7 @@ def doUploadTask(request):
     print('1上传的结果',fileDir)
     StudentSelectTitle.objects.filter(teacher_id=id).update(task_docx=fileDir)
     return JsonResponse({'msg':"上传成功",'data':fileDir,'code':200})
+# 上传指导书
 @csrf_exempt # 允许跨站上传
 def doUploadGuide(request):
     id = request.session["userinfo"].get("id",None)
@@ -93,6 +96,7 @@ def doUploadGuide(request):
     print('2上传的结果',fileDir)
     StudentSelectTitle.objects.filter(teacher_id=id).update(guide_docx=fileDir)
     return JsonResponse({'msg':"上传成功",'data':fileDir,'code':200})
+# 选择学生作为自己的指导学生
 def doConfirmStudent(request):
     id = request.session["userinfo"].get("id",None)
 
@@ -104,6 +108,7 @@ def doConfirmStudent(request):
     StudentGraduateAnswer.objects.filter(teacher_id=id).update(**data)
     StudentMiddleCheck.objects.filter(teacher_id=id).update(**data)
     return JsonResponse({'msg':"提交成功",'code':200})
+#
 def doSubmitBrief(request):
     id = request.session["userinfo"].get("id",None)
 
